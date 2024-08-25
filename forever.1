@@ -5,27 +5,27 @@ FOREVER(1)     Human68k ITA TOOLBOX User's Manual      FOREVER(1)
 
 
 
-����
-     forever - �R�}���h���i�v�ɌJ��Ԃ�
+名称
+     forever - コマンドを永久に繰り返す
 
-�`��
+形式
      forever command args
 
-���
-     forever �́C�w�肳�ꂽ�R�}���h���i�v�ɌJ��Ԃ����s���܂��D
-     forever �͌����ďI�����܂���D
-     command �� HUPAIR�����ł��邱�Ƃ�O��Ƃ��ċN������܂��D
-     command �ɓn��������0 �� command ���̂��̂ł��D
+解説
+     forever は，指定されたコマンドを永久に繰り返し実行します．
+     forever は決して終了しません．
+     command は HUPAIR準拠であることを前提として起動されます．
+     command に渡される引数0 は command そのものです．
 
-����E����
-     Copyright(C)1992-94 by �_ �j�F (Itagaki Fumihiko)
+制作・著作
+     Copyright(C)1992-94 by 板垣 史彦 (Itagaki Fumihiko)
 
-�o�O
-     command �͊��S�p�X���łȂ���΂Ȃ�܂���B
+バグ
+     command は完全パス名でなければなりません。
 
-     �J�����g�E�f�B���N�g���₻�̑��̏�Ԃɂ͈�؊֒m���܂���D
-     command ���J�����g�E�f�B���N�g���₻�̑���ύX���ďI������ƁC
-     forever �͂�������̂܂܎󂯌p���܂��D
+     カレント・ディレクトリやその他の状態には一切関知しません．
+     command がカレント・ディレクトリやその他を変更して終了すると，
+     forever はそれをそのまま受け継ぎます．
 
 
 

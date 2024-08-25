@@ -1,127 +1,127 @@
-���h�̂͏ȗ����Ă��܂�
+※敬称は省略しています
 
 
 
 Version 0.6
 
-* ���O�C�������͎�, 8�����𒴂��镪�̓G�R�[�o�b�N���Ȃ��B
+* ログイン名入力時, 8文字を超える分はエコーバックしない。
 
-* ���O�C�������͎��̍s�ҏW�@�\�ɁA^H��^?��erase�����A^W��werase�����A^R��
-  redraw�����Ƃ��Ēǉ������B
+* ログイン名入力時の行編集機能に、^Hと^?をerase文字、^Wをwerase文字、^Rを
+  redraw文字として追加した。
 
-* ���O�C�������͎���^U�͉��s������kill����悤�ɂ����B
+* ログイン名入力時の^Uは改行せずにkillするようにした。
 
-* ���O�C�������͎��A^Z�͒ʏ�̕����Ƃ��ď�������悤�ɂ����B
+* ログイン名入力時、^Zは通常の文字として処理するようにした。
 
-* ���O�C�������͎��A^C�ŏI������悤�ɂ����B
+* ログイン名入力時、^Cで終了するようにした。
 
-* �p�X���[�h���͎��̍s�ҏW�@�\�ɁA^H��^?��erase�����A^W��werase�����A^U��
-  kill�����Ƃ��Ēǉ������B
+* パスワード入力時の行編集機能に、^Hと^?をerase文字、^Wをwerase文字、^Uを
+  kill文字として追加した。
 
-* BSS��������Ɗm�ۂ���Ă��Ȃ������̂��C���B
+* BSSがきちんと確保されていなかったのを修正。
 
 Version 0.5
 
-* ���[�U�̊��� UID �� GID ���������B
+* ユーザの環境に UID と GID を加えた。
 
-* ���[�U�̃V�F���ւ̈���0�Ƃ��āe-<shell>[<logname>]�f��^����悤�ɂ����B
-  ������ <shell> �̓��[�U�̃V�F���̃p�X���̃t�@�C���������i�g���q���܂ށj�A
-  <logname> �̓��[�U�̃��O�C�����B
+* ユーザのシェルへの引数0として‘-<shell>[<logname>]’を与えるようにした。
+  ここで <shell> はユーザのシェルのパス名のファイル名部分（拡張子も含む）、
+  <logname> はユーザのログイン名。
 
 Version 0.4
 
-* �h�L�������g�����M�C�������B
+* ドキュメントを加筆修正した。
 
-* ���̑��������̍��ׂȏC�����s�����B
+* その他いくつかの些細な修正を行った。
 
-* ���O�C����� login.x ����L���郁�����ʂ����������B
+* ログイン後に login.x が占有するメモリ量を少くした。
 
-* �Í����p�X���[�h�ɑΉ������B�������܂������Ǘ��͍s���Ă��Ȃ��B
+* 暗号化パスワードに対応した。ただしまだ期限管理は行っていない。
 
-* ���[�U�̃V�F���ւ̈���0�Ƃ��āe-�f��^����悤�ɂ����B
+* ユーザのシェルへの引数0として‘-’を与えるようにした。
 
-* motd �o�͒��� ^C ��������Ă����O�C���������p������悤���߂��B
+* motd 出力中に ^C が押されてもログイン処理を継続するよう改めた。
 
-* ���[�U�̃z�[���E�f�B���N�g���Ɉړ��ł��Ȃ��ꍇ�ɂ� $SYSROOT �����[�U�̃z�[
-  ���E�f�B���N�g���Ƃ��ă��O�C����������悤�ɂ����B
+* ユーザのホーム・ディレクトリに移動できない場合には $SYSROOT をユーザのホー
+  ム・ディレクトリとしてログインを許可するようにした。
 
-* ���[�U�̊��ϐ� HOME �� SHELL ���Z�b�g����ہA/ �� \ �ɒu��������̂���
-  �߁Apasswd �t�@�C���̋L�q�̂܂܃Z�b�g����悤�ɂ����B
+* ユーザの環境変数 HOME と SHELL をセットする際、/ を \ に置き換えるのをや
+  め、passwd ファイルの記述のままセットするようにした。
 
-* ���[�U id �� 0 �Ȃ�� $SYSROOT/etc/nologin �������Ă����O�C�����������
-  �����߂��B
+* ユーザ id が 0 ならば $SYSROOT/etc/nologin があってもログインを許可するよ
+  う改めた。
 
-* ���O�C�����ɂ��ׂĂ̕������g�p�ł���悤�ɂ����B������ '-' �Ŏn�܂郍�O�C
-  ������^����ꂽ�Ƃ��ɂ̓G���[���b�Z�[�W���o�͂���悤�ɂ����B
+* ログイン名にすべての文字を使用できるようにした。ただし '-' で始まるログイ
+  ン名を与えられたときにはエラーメッセージを出力するようにした。
 
-* �^����ꂽ���O�C�����͍ŏ��̂W����������L���Ƃ���悤�ɂ����B
+* 与えられたログイン名は最初の８文字だけを有効とするようにした。
 
-* �^����ꂽ���O�C�����̑O��̋󔒂��폜����̂���߂��B
+* 与えられたログイン名の前後の空白を削除するのをやめた。
 
-* ���O�C�����̓��͂� DOS _GETS �ł͂Ȃ� DOS _INKEY �̃��[�v�ɂ���čs���悤
-  �ɂ����B���͂̏I���� CR ���܂��� LF�B^D �� ^Z �� login ���I�����A^C ��
-  ^U ��kill�����i�s�̃L�����Z���j�Ƃ��ĔF������B���̑��̕����͂��ׂă��O�C
-  �����̈ꕔ�Ƃ��ē��͂���B
+* ログイン名の入力を DOS _GETS ではなく DOS _INKEY のループによって行うよう
+  にした。入力の終わりは CR かまたは LF。^D と ^Z は login を終了し、^C と
+  ^U はkill文字（行のキャンセル）として認識する。その他の文字はすべてログイ
+  ン名の一部として入力する。
 
-* login �I�����ɂ� login �N�����̍�ƃf�B���N�g���ɖ߂��Ă���I������悤��
-  �����B
+* login 終了時には login 起動時の作業ディレクトリに戻ってから終了するように
+  した。
 
-* �e�v���Z�X���Ȃ��Ă��I������悤���߂��B�܂��A���[�U�̃V�F�����I��������
-  login ���I������悤�ɉ��߂��B
+* 親プロセスがなくても終了するよう改めた。また、ユーザのシェルが終了したら
+  login も終了するように改めた。
 
-* $HOME/.hushlogin �� $HOME/%hushlogin �Ɠ��l�ɔF�߂�悤�ɂ����B
+* $HOME/.hushlogin を $HOME/%hushlogin と同様に認めるようにした。
 
-* DecodeHUPAIR�̕ύX�B
+* DecodeHUPAIRの変更。
 
-* fgetpwnam�̕ύX�B
+* fgetpwnamの変更。
 
-* getpass�̕ύX�iFGETC�ł͂Ȃ�INKEY���g���CCR �� LF �̗������s�������Ƃ���
-  �F�߂�C�s����������͂���܂Ō����ċA��Ȃ��j�B
+* getpassの変更（FGETCではなくINKEYを使う，CR と LF の両方を行末文字として
+  認める，行末文字を入力するまで決して帰らない）。
 
 Version 0.3  
 
-*  DecodeHUPAIR�̕ύX�B
+*  DecodeHUPAIRの変更。
 
 Version 0.2
 
-* ���̑��������̍��ׂȏC���B
+* その他いくつかの些細な修正。
 
-* �t�@�C�� $SYSROOT/etc/nologin �����݂��Ă���Ƃ��ɂ̓��O�C���ł��Ȃ��悤
-  �ɂ����B
+* ファイル $SYSROOT/etc/nologin が存在しているときにはログインできないよう
+  にした。
 
-* -p �I�v�V�������������B
+* -p オプションを加えた。
 
-* �����Ń��[�U�̊����`�ł���悤�ɂ����B
+* 引数でユーザの環境を定義できるようにした。
 
-* ���O�C�������w�肷����������߂���悤�ɂ����B
+* ログイン名を指定する引数を解釈するようにした。
 
-* �f�t�H���g�̃V�F���� $SYSROOT/bin/COMMAND.X �ɕύX�B
+* デフォルトのシェルを $SYSROOT/bin/COMMAND.X に変更。
 
-* ���[�U�̃z�[���E�f�B���N�g���Ƀt�@�C�� %hushlogin ��������΃��O�C������
-  $SYSROOT/etc/motd �̓��e��\������悤�ɂ����B
+* ユーザのホーム・ディレクトリにファイル %hushlogin が無ければログイン時に
+  $SYSROOT/etc/motd の内容を表示するようにした。
 
-* ���[�U�̊� LOGNAME, USER, HOME, SHELL ���Z�b�g����悤�ɂ����B
+* ユーザの環境 LOGNAME, USER, HOME, SHELL をセットするようにした。
 
-* ���O�C���̍ۂɂ� $SYSROOT/etc/passwd �ɋL�q����Ă���Ƃ���C���[�U�̃z�[
-  ���E�f�B���N�g���Ɉړ����C���[�U�̃V�F�����N������悤�ɂ����B
+* ログインの際には $SYSROOT/etc/passwd に記述されているとおり，ユーザのホー
+  ム・ディレクトリに移動し，ユーザのシェルを起動するようにした。
 
-* �p�X���[�h�E�t�B�[���h����Ȃ�΃p�X���[�h��₢���킹�Ȃ��悤�ɂ����B
+* パスワード・フィールドが空ならばパスワードを問い合わせないようにした。
 
-* ���͂��ꂽ���O�C��������܂��͋󔒂݂̂̂Ƃ��͍Ăу��O�C������₢���킹
-  ��悤�ɂ����B
+* 入力されたログイン名が空または空白のみのときは再びログイン名を問い合わせ
+  るようにした。
 
-* $SYSROOT/etc/passwd ���ƍ����ă��O�C�������^�s������悤�ɂ����B����
-  ���p�X���[�h�͒P���ɔ�r����݂̂ł���C�Í����^�����͍s��Ȃ��B
+* $SYSROOT/etc/passwd を照合してログインを許可／不許可するようにした。ただ
+  しパスワードは単純に比較するのみであり，暗号化／復号は行わない。
 
-* ���ϐ� SYSROOT �ɑΉ��B
+* 環境変数 SYSROOT に対応。
 
 Version 0.1
 
-* �e�v���Z�X������i���[�U�E�v���O��������N�����ꂽ�j�ꍇ�ɂ� ^C �ŏI����
-  ��悤�ɂ����B
+* 親プロセスがある（ユーザ・プログラムから起動された）場合には ^C で終了す
+  るようにした。
 
 Version 0.0
 
-* �쐬�B���O�C�����ƃp�X���[�h��₢���킹����C�����P�� A:/bin/fish.x ���N
-  ������̂݁B
+* 作成。ログイン名とパスワードを問い合わせた後，ただ単に A:/bin/fish.x を起
+  動するのみ。
 

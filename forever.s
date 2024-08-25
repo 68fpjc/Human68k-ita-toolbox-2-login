@@ -25,15 +25,15 @@ STACKSIZE	equ	512
 .text
 start:
 		bra.s	start1
-		dc.b	'#HUPAIR',0			*  HUPAIR“K‡éŒ¾
+		dc.b	'#HUPAIR',0			*  HUPAIRé©åˆå®£è¨€
 start1:
-		lea	stack_bottom,a7			*  A7 := ƒXƒ^ƒbƒN‚Ì’ê
-		move.l	a3,forever_envp			*  ŠÂ‹«‚ÌƒAƒhƒŒƒX‚ğ‹L‰¯‚·‚é
+		lea	stack_bottom,a7			*  A7 := ã‚¹ã‚¿ãƒƒã‚¯ã®åº•
+		move.l	a3,forever_envp			*  ç’°å¢ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨˜æ†¶ã™ã‚‹
 	*
-	*  è—Lƒƒ‚ƒŠ‚ğØ‚è‹l‚ß‚é
+	*  å æœ‰ãƒ¡ãƒ¢ãƒªã‚’åˆ‡ã‚Šè©°ã‚ã‚‹
 	*
 		DOS	_GETPDB
-		movea.l	d0,a0				*  A0 : PDBƒAƒhƒŒƒX
+		movea.l	d0,a0				*  A0 : PDBã‚¢ãƒ‰ãƒ¬ã‚¹
 		lea	stack_bottom,a1
 		suba.l	a0,a1
 		move.l	a1,-(a7)
@@ -41,7 +41,7 @@ start1:
 		DOS	_SETBLOCK
 		addq.l	#8,a7
 	*
-	*  ˆø”‚ğƒfƒR[ƒh‚·‚é
+	*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 	*
 		lea	1(a2),a0
 		bsr	strlen
@@ -54,13 +54,13 @@ start1:
 
 		move.l	d0,args
 		movea.l	d0,a1
-		bsr	DecodeHUPAIR			*  ˆø”‚ğƒfƒR[ƒh‚·‚é
+		bsr	DecodeHUPAIR			*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 		subq.l	#1,d0
 		bcs	usage
 
 		move.l	d0,argc
 	*
-	*  ƒVƒOƒiƒ‹ˆ—ƒ‹[ƒ`ƒ“‚ğİ’è‚·‚é
+	*  ã‚·ã‚°ãƒŠãƒ«å‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ã‚’è¨­å®šã™ã‚‹
 	*
 		clr.l	command_envp
 		st	in_me
@@ -74,13 +74,13 @@ start1:
 		addq.l	#6,a7
 forever_spawn:
 	*
-	*  ˆø”‚ğƒGƒ“ƒR[ƒh‚·‚é
+	*  å¼•æ•°ã‚’ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 	*
 		move.l	argc,d1
 		movea.l	args,a0
 		bsr	strlen
 		addq.l	#1,d0
-		lea	(a0,d0.l),a1			*  A1 : ˆø”•À‚Ñ‚Ìæ“ª
+		lea	(a0,d0.l),a1			*  A1 : å¼•æ•°ä¸¦ã³ã®å…ˆé ­
 		move.l	#$00ffffff,-(a7)
 		DOS	_MALLOC
 		addq.l	#4,d7
@@ -89,7 +89,7 @@ forever_spawn:
 		blo	insufficient_memory
 
 		move.l	d0,d2
-		subq.l	#8,d2				*  D2.L : ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì—e—Ê
+		subq.l	#8,d2				*  D2.L : ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®å®¹é‡
 		move.l	d0,-(a7)
 		DOS	_MALLOC
 		addq.l	#4,a7
@@ -116,7 +116,7 @@ forever_spawn:
 		DOS	_SETBLOCK
 		addq.l	#8,a7
 	*
-	*  ŠÂ‹«‚ğ•¡»‚·‚é
+	*  ç’°å¢ƒã‚’è¤‡è£½ã™ã‚‹
 	*
 		movea.l	forever_envp,a1
 		moveq	#1,d2
@@ -127,11 +127,11 @@ forever_spawn:
 		movea.l	a1,a0
 		bsr	strazbot
 		move.l	a0,d2
-		sub.l	a1,d2				*  D2.L : ŠÂ‹«–{‘Ì‚ÌƒoƒCƒg”-1
+		sub.l	a1,d2				*  D2.L : ç’°å¢ƒæœ¬ä½“ã®ãƒã‚¤ãƒˆæ•°-1
 dupenv_1:
 		move.l	d2,d1
-		addq.l	#4+1+1,d1			*  +4:æ“ª‚Ìsize fieldC+1:––”ö‚ÌNUL
-		bclr	#0,d1				*  D1.L : ŠÂ‹«ƒGƒŠƒA‚ÌƒTƒCƒY
+		addq.l	#4+1+1,d1			*  +4:å…ˆé ­ã®size fieldï¼Œ+1:æœ«å°¾ã®NUL
+		bclr	#0,d1				*  D1.L : ç’°å¢ƒã‚¨ãƒªã‚¢ã®ã‚µã‚¤ã‚º
 		move.l	d1,-(a7)
 		DOS	_MALLOC
 		addq.l	#4,a7
@@ -149,16 +149,16 @@ dupenv_1:
 dupenv_2:
 		clr.b	(a0)
 	*
-	*  ƒRƒ}ƒ“ƒh‚ğspawn‚·‚é
+	*  ã‚³ãƒãƒ³ãƒ‰ã‚’spawnã™ã‚‹
 	*
 		movea.l	args,a0
 		bsr	drvchkp
 		bmi	unable_exec
 
-		move.l	command_envp,-(a7)		*  ƒ†[ƒU‚ÌŠÂ‹«‚ÌƒAƒhƒŒƒX
-		move.l	command_line,-(a7)		*  ‹N“®‚·‚éƒvƒƒOƒ‰ƒ€‚Ö‚Ìˆø”‚ÌƒAƒhƒŒƒX
-		move.l	a0,-(a7)			*  ‹N“®‚·‚éƒvƒƒOƒ‰ƒ€‚ÌƒpƒX–¼‚ÌƒAƒhƒŒƒX
-		clr.w	-(a7)				*  ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“FLOAD&EXEC
+		move.l	command_envp,-(a7)		*  ãƒ¦ãƒ¼ã‚¶ã®ç’°å¢ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+		move.l	command_line,-(a7)		*  èµ·å‹•ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¸ã®å¼•æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+		move.l	a0,-(a7)			*  èµ·å‹•ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒ‘ã‚¹åã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+		clr.w	-(a7)				*  ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ï¼šLOAD&EXEC
 		sf	in_me
 		DOS	_EXEC
 		st	in_me
@@ -167,7 +167,7 @@ dupenv_2:
 		bmi	unable_exec
 respawn:
 		lea	stack_bottom,a7
-		DOS	_ALLCLOSE			*  Human68k 2.02 BUG‘Îôi_EXEC ‚ª ^C ‚Å’†’f‚µ‚½‚Æ‚«Cƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹‚ªƒNƒ[ƒY‚³‚ê‚È‚¢j
+		DOS	_ALLCLOSE			*  Human68k 2.02 BUGå¯¾ç­–ï¼ˆ_EXEC ãŒ ^C ã§ä¸­æ–­ã—ãŸã¨ãï¼Œãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«ãŒã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚Œãªã„ï¼‰
 		move.l	command_envp,-(a7)
 		DOS	_MFREE
 		move.l	command_line,d0
